@@ -125,7 +125,7 @@ function osc_show_recaptcha($section = '') {
             switch($section) {
                 case('recover_password'):
                     $time  = Session::newInstance()->_get('recover_time');
-                    if((time()-$time)<=1200) {
+                    if(!$time||(time()-$time)<=1200) {
                         echo recaptcha_get_html( osc_recaptcha_public_key(), null, osc_is_ssl() )."<br />";
                     }
                     break;
